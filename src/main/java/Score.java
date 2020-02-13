@@ -10,4 +10,5 @@ public class Score {
             return card.getRank().ordinal() + 1;
         }
     }
+
 }
