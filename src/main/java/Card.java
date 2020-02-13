@@ -15,4 +15,9 @@ public class Card {
     public RankType getRank() {
         return rank;
     }
+
+    public boolean hasFace() {
+        return rank.getIsFaceCard();
+    }
+
 }

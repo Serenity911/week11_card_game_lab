@@ -21,4 +21,10 @@ public class CardTest {
     public void cardHasRank(){
         assertEquals(RankType.FIVE, card.getRank());
     }
+
+    @Test
+    public void cardHasFace() {
+        card = new Card(SuitType.HEART, RankType.QUEEN);
+        assertEquals(true, card.hasFace());
+    }
 }
