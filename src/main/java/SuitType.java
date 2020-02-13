@@ -3,4 +3,10 @@ public enum SuitType {
     DIAMOND,
     SPADE,
     CLUB
+
+//    private final int suitCount;
+//
+//    public int suitCount(){
+//
+//    }
 }
