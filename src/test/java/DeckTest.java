@@ -22,5 +22,13 @@ public class DeckTest {
         deck.populateDeck();
         assertEquals(52, deck.countCards());
     }
+
+    @Test
+    public void canDealCard(){
+        deck.populateDeck();
+//        deck.dealCard();
+        assertEquals(RankType.ACE,deck.dealCard().getRank());
+        assertEquals(51, deck.countCards());
+    }
 }
 
