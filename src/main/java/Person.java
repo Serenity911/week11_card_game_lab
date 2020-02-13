@@ -17,11 +17,18 @@ public class Person {
     }
 
     public void addToHand(Card card){
+        if (this.card.size() >= 1) {
+            this.card.clear();
+        }
         this.card.add(card);
     }
 
     public Card getCard() {
         return card.get(0);
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void addToScore(int point){

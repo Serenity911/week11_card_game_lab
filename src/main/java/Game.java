@@ -9,6 +9,10 @@ public class Game {
         this.deck = new Deck();
     }
 
+    public ArrayList<Person> getPlayers() {
+        return players;
+    }
+
     public void addPlayer(String name){
         this.players.add(new Person(name));
     }
@@ -25,14 +29,25 @@ public class Game {
     }
 
     public Person findWinner(){
-        int winningCard = 0;
-        Person winner = new Person("WHATEVER");
+        int winningScore = 0;
+        Person winner = null;
         for (Person player : players) {
             int cardScore = Score.getValue(player.getCard());
-            if (cardScore > winningCard) {
+             if (cardScore > winningScore) {
+                winningScore = cardScore ;
                 winner = player;
             }
         }
+        this.assignPoints(winner);
         return winner;
+    }
+
+    public void assignPoints(Person winner){
+        winner.addToScore(1);
+    }
+
+    public Person newRound(){
+        this.giveCards();
+        return this.findWinner();
     }
 }
