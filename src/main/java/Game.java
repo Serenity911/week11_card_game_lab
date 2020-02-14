@@ -3,11 +3,13 @@ import java.util.ArrayList;
 public class Game {
     private ArrayList<Person> players;
     private Deck deck;
+    private ArrayList<Card> dealerHand;
 
 
     public Game() {
         this.players = new ArrayList<Person>();
         this.deck = new Deck();
+        this.dealerHand = new ArrayList<Card>();
     }
 
     public ArrayList<Person> getPlayers() {
@@ -27,12 +29,22 @@ public class Game {
         this.deck.shuffleDeck();
     }
 
-    public void giveCards() {
+//    not sure if dealer gets the card first or not
+    public Card giveCards() {
         for (int i = 0; i < 2; i++) {
             for (Person player : players) {
                 player.addToHand(deck.dealCard());
             }
+            this.dealerHand.add(deck.dealCard());
         }
+        return this.dealerHand.get(0);
     }
 
+    public ArrayList<Card> getDealerHand() {
+        return this.dealerHand;
+    }
+
+    public int countDealerHand(){
+        return this.dealerHand.size();
+    }
 }
