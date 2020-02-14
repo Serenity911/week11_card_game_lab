@@ -48,8 +48,26 @@ public class GameTest {
         assertEquals(2, player2.countHandCards());
         assertEquals(2, game.countDealerHand());
     }
-    
 
+    @Test
+    public void players_and_dealer_score_start_at_0(){
+        game.prepareDeck();
+        game.addPlayer("Jim");
+        game.addPlayer("Alex");
+        Person person1 = game.getPlayers().get(0);
+        Person person2 = game.getPlayers().get(1);
+        int player1Score = game.getGameScores().get(person1);
+        int player2Score = game.getGameScores().get(person1);
+        int dealerScore = game.getGameScores().get();
+        assertEquals(0, player1Score);
+        assertEquals(0, player2Score);
+        assertEquals(0, dealerScore);
+
+
+    }
+
+
+//
 //    @Test
 //    public void get_players_hands_score(){
 //        game.prepareDeck();
@@ -61,6 +79,6 @@ public class GameTest {
 //        int player1Score = player1.getHandScore();
 //        int player2Score = player2.getHandScore();
 //        game.getPlayersHandsScore();
-//        assertEquals(player1Score, game.get);
+//        assertEquals(player1Score,);
 //    }
 }

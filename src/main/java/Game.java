@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
     private ArrayList<Person> players;
@@ -6,10 +7,14 @@ public class Game {
     private ArrayList<Card> dealerHand;
 
 
+    private HashMap<Person, Integer> gameScores;
+
+//should the dealer be part of the game or a Person?
     public Game() {
         this.players = new ArrayList<Person>();
         this.deck = new Deck();
         this.dealerHand = new ArrayList<Card>();
+        this.gameScores = new HashMap<Person, Integer>();
     }
 
     public ArrayList<Person> getPlayers() {
@@ -21,7 +26,9 @@ public class Game {
     }
 
     public void addPlayer(String name) {
-        this.players.add(new Person(name));
+        Person personToAdd = new Person(name);
+        this.players.add(personToAdd);
+        this.gameScores.put(personToAdd, 0);
     }
 
     public void prepareDeck() {
@@ -46,5 +53,9 @@ public class Game {
 
     public int countDealerHand(){
         return this.dealerHand.size();
+    }
+
+    public HashMap<Person, Integer> getGameScores() {
+        return this.gameScores;
     }
 }
