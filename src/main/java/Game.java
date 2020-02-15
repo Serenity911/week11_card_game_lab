@@ -4,28 +4,35 @@ import java.util.HashMap;
 public class Game {
     private ArrayList<Person> players;
     private Deck deck;
-    private ArrayList<Card> dealerHand;
+    private Dealer dealer;
 
 
     private HashMap<Person, Integer> gameScores;
 
     public Game() {
-        this.players = new ArrayList<Person>();
+        this.players= new ArrayList<Person>();
+        this.dealer = new Dealer();
         this.deck = new Deck();
-        this.dealerHand = new ArrayList<Card>();
         this.gameScores = new HashMap<Person, Integer>();
+        this.gameScores.put(dealer, 0);
+
     }
 
     public ArrayList<Person> getPlayers() {
         return this.players;
     }
 
+    public Dealer getDealer() {
+        return dealer;
+    }
+
     public int countPlayers() {
         return this.players.size();
     }
 
+
     public void addPlayer(String name) {
-        Person personToAdd = new Person(name);
+        Player personToAdd = new Player(name);
         this.players.add(personToAdd);
         this.gameScores.put(personToAdd, 0);
     }
@@ -41,17 +48,9 @@ public class Game {
             for (Person player : players) {
                 player.addToHand(deck.dealCard());
             }
-            this.dealerHand.add(deck.dealCard());
+            this.dealer.addToHand(deck.dealCard());
         }
-        return this.dealerHand.get(0);
-    }
-
-    public ArrayList<Card> getDealerHand() {
-        return this.dealerHand;
-    }
-
-    public int countDealerHand(){
-        return this.dealerHand.size();
+        return this.dealer.getHand().get(0);
     }
 
     public HashMap<Person, Integer> getGameScores() {

@@ -4,7 +4,7 @@ import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
 public class PersonTest {
-    public Person person1;
+    public Player person1;
     public Card cardTwo;
     public Card cardAce;
     public Card cardAce1;
@@ -14,7 +14,7 @@ public class PersonTest {
 
     @Before
     public void before(){
-        person1 = new Person("Bob");
+        person1 = new Player("Bob");
         cardTwo = new Card(SuitType.HEART, RankType.TWO);
         cardAce = new Card(SuitType.HEART, RankType.ACE);
         cardAce1 = new Card(SuitType.DIAMOND, RankType.ACE);
@@ -45,25 +45,24 @@ public class PersonTest {
         assertEquals(0, person1.countHandCards());
     }
 
-    @Test
-    public void runningTotal_starts_0(){
-        assertEquals(0, person1.getRunningTotal());
-
-    }
+//    cannot use it anymore, it's inside hand score
+//    @Test
+//    public void runningTotal_starts_0(){
+//        assertEquals(0, person1.getRunningTotal());
+//
+//    }
 
     @Test
     public void get_hand_score_one_card(){
         person1.addToHand(cardTwo);
-        person1.getHandScore();
-        assertEquals(2, person1.getRunningTotal());
+        assertEquals(2, person1.getHandScore());
     }
 
     @Test
     public void get_hand_score_two_cards(){
         person1.addToHand(cardTwo);
         person1.addToHand(cardAce);
-        person1.getHandScore();
-        assertEquals(13, person1.getRunningTotal());
+        assertEquals(13, person1.getHandScore());
     }
 
     @Test
@@ -73,8 +72,7 @@ public class PersonTest {
         person1.addToHand(cardAce1);
         person1.addToHand(cardTen);
         person1.addToHand(cardEight);
-        person1.getHandScore();
-        assertEquals(21, person1.getRunningTotal());
+        assertEquals(21, person1.getHandScore());
     }
 
     @Test
@@ -84,8 +82,7 @@ public class PersonTest {
         person1.addToHand(cardAce1);
         person1.addToHand(cardTen);
         person1.addToHand(cardNine);
-        person1.getHandScore();
-        assertEquals(22, person1.getRunningTotal());
+        assertEquals(22, person1.getHandScore());
     }
 
     @Test

@@ -6,12 +6,13 @@ import static org.junit.Assert.assertEquals;
 public class GameTest {
     public Game game;
     public Person player1;
+//    public Dealer dealer;
 
     @Before
     public void before(){
         game = new Game();
-        player1 = new Person("Bob");
-        dealer = new Person("Mr. dealer");
+        player1 = new Player("Bob");
+//        dealer = new Dealer();
     }
 
     @Test
@@ -45,9 +46,10 @@ public class GameTest {
         game.giveCards();
         player1 = game.getPlayers().get(0);
         Person player2 = game.getPlayers().get(1);
+        Dealer dealer = game.getDealer();
         assertEquals(2, player1.countHandCards());
         assertEquals(2, player2.countHandCards());
-        assertEquals(2, game.countDealerHand());
+        assertEquals(2, dealer.countHandCards());
     }
 
     @Test
@@ -57,6 +59,7 @@ public class GameTest {
         game.addPlayer("Alex");
         Person person1 = game.getPlayers().get(0);
         Person person2 = game.getPlayers().get(1);
+        Dealer dealer = game.getDealer();
         int player1Score = game.getGameScores().get(person1);
         int player2Score = game.getGameScores().get(person1);
         int dealerScore = game.getGameScores().get(dealer);
