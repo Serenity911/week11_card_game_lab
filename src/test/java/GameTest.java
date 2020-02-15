@@ -61,28 +61,42 @@ public class GameTest {
         Person person2 = game.getPlayers().get(1);
         Dealer dealer = game.getDealer();
         int player1Score = game.getGameScores().get(person1);
-        int player2Score = game.getGameScores().get(person1);
+        int player2Score = game.getGameScores().get(person2);
         int dealerScore = game.getGameScores().get(dealer);
         assertEquals(0, player1Score);
         assertEquals(0, player2Score);
         assertEquals(0, dealerScore);
-
-
     }
 
 
-//
-//    @Test
-//    public void get_players_hands_score(){
+    @Test
+    public void get_players_hands_score(){
+        game.prepareDeck();
+        game.addPlayer("Jim");
+        game.addPlayer("Alex");
+        game.giveCards();
+        Player person1 = game.getPlayers().get(0);
+        Player person2 = game.getPlayers().get(1);
+        Dealer dealer = game.getDealer();
+        int player1Score = game.getGameScores().get(person1);
+        int player2Score = game.getGameScores().get(person2);
+        int dealerScore = game.getGameScores().get(dealer);
+        assertEquals(person1.getHandScore(), player1Score);
+        assertEquals(person2.getHandScore(), player2Score);
+//        assertEquals(dealer.getHandScore(), dealerScore);
+    }
+
+//    public void get_second_turn_not_busted_players(){
 //        game.prepareDeck();
 //        game.addPlayer("Jim");
 //        game.addPlayer("Alex");
 //        game.giveCards();
-//        player1 = game.getPlayers().get(0);
-//        Person player2 = game.getPlayers().get(1);
-//        int player1Score = player1.getHandScore();
-//        int player2Score = player2.getHandScore();
-//        game.getPlayersHandsScore();
-//        assertEquals(player1Score,);
+//        Player person1 = game.getPlayers().get(0);
+//        Player person2 = game.getPlayers().get(1);
+//        Dealer dealer = game.getDealer();
+//        game.playersNextTurn();
+//        player1.stand();
+//        player2.twist();
+//
 //    }
 }

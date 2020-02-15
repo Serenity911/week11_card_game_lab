@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Game {
-    private ArrayList<Person> players;
+    private ArrayList<Player> players;
     private Deck deck;
     private Dealer dealer;
 
@@ -10,7 +10,7 @@ public class Game {
     private HashMap<Person, Integer> gameScores;
 
     public Game() {
-        this.players= new ArrayList<Person>();
+        this.players= new ArrayList<Player>();
         this.dealer = new Dealer();
         this.deck = new Deck();
         this.gameScores = new HashMap<Person, Integer>();
@@ -18,7 +18,7 @@ public class Game {
 
     }
 
-    public ArrayList<Person> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return this.players;
     }
 
@@ -45,7 +45,7 @@ public class Game {
 //    not sure if dealer gets the card first or not
     public Card giveCards() {
         for (int i = 0; i < 2; i++) {
-            for (Person player : players) {
+            for (Player player : this.players) {
                 player.addToHand(deck.dealCard());
             }
             this.dealer.addToHand(deck.dealCard());
@@ -54,6 +54,13 @@ public class Game {
     }
 
     public HashMap<Person, Integer> getGameScores() {
+        for (Player player: this.players) {
+            this.gameScores.put(player, player.getHandScore());
+        }
         return this.gameScores;
     }
+
+
+
+
 }

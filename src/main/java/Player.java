@@ -30,4 +30,10 @@ public class Player extends Person {
         checkIfBusted(runningTotal);
         return runningTotal;
     }
+
+    public boolean chooseStand(){
+        return true;
+    }
+
+
 }
