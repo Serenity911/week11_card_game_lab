@@ -11,6 +11,7 @@ public class GameTest {
     public void before(){
         game = new Game();
         player1 = new Person("Bob");
+        dealer = new Person("Mr. dealer");
     }
 
     @Test
@@ -58,7 +59,7 @@ public class GameTest {
         Person person2 = game.getPlayers().get(1);
         int player1Score = game.getGameScores().get(person1);
         int player2Score = game.getGameScores().get(person1);
-        int dealerScore = game.getGameScores().get();
+        int dealerScore = game.getGameScores().get(dealer);
         assertEquals(0, player1Score);
         assertEquals(0, player2Score);
         assertEquals(0, dealerScore);

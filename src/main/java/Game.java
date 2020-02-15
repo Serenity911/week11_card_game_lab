@@ -9,7 +9,6 @@ public class Game {
 
     private HashMap<Person, Integer> gameScores;
 
-//should the dealer be part of the game or a Person?
     public Game() {
         this.players = new ArrayList<Person>();
         this.deck = new Deck();
