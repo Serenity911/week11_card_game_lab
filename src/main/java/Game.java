@@ -86,8 +86,9 @@ public class Game {
 
     public Integer dealerNextRound() {
         Integer dealerScore = this.dealer.getHandScore();
-        if(dealerScore <= 16) {
+        while(dealerScore <= 16) {
             this.dealer.addToHand(deck.dealCard());
+            dealerScore = this.dealer.getHandScore();
         }
 
        return this.dealer.getHandScore();
