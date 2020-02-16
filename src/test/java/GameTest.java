@@ -63,9 +63,9 @@ public class GameTest {
         Person person1 = game.getPlayers().get(0);
         Person person2 = game.getPlayers().get(1);
         Dealer dealer = game.getDealer();
-        int player1Score = game.getGameScores().get(person1);
-        int player2Score = game.getGameScores().get(person2);
-        int dealerScore = game.getGameScores().get(dealer);
+        int player1Score = person1.getHandScore();
+        int player2Score = person2.getHandScore();
+        int dealerScore = dealer.getHandScore();
         assertEquals(0, player1Score);
         assertEquals(0, player2Score);
         assertEquals(0, dealerScore);
@@ -80,8 +80,8 @@ public class GameTest {
         game.giveCards();
         Player person1 = game.getPlayers().get(0);
         Player person2 = game.getPlayers().get(1);
-        int player1Score = game.getGameScores().get(person1);
-        int player2Score = game.getGameScores().get(person2);
+        int player1Score = person1.getHandScore();
+        int player2Score = person2.getHandScore();
         assertEquals(person1.getHandScore(), player1Score);
         assertEquals(person2.getHandScore(), player2Score);
     }
@@ -93,7 +93,7 @@ public class GameTest {
         game.addPlayer("Jim");
         Player person1 = game.getPlayers().get(0);
         game.giveCards();
-        game.getGameScores();
+        game.updateScores();
 
         String input = "Stand";
         InputStream in = new ByteArrayInputStream(input.getBytes());

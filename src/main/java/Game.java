@@ -1,20 +1,19 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Game {
     private ArrayList<Player> players;
     private Deck deck;
     private Dealer dealer;
-    private HashMap<Person, Integer> gameScores;
+    private ArrayList<Person> dealerAndPlayers;
 
     public Game() {
         this.players= new ArrayList<Player>();
         this.dealer = new Dealer();
         this.deck = new Deck();
-        this.gameScores = new HashMap<Person, Integer>();
-        this.gameScores.put(dealer, 0);
-
+        this.dealerAndPlayers = new ArrayList<Person>();
+        this.dealerAndPlayers.add(this.dealer);
     }
 
     public ArrayList<Player> getPlayers() {
@@ -29,11 +28,14 @@ public class Game {
         return this.players.size();
     }
 
+    public ArrayList<Person> getDealerAndPlayers() {
+        return this.dealerAndPlayers;
+    }
 
     public void addPlayer(String name) {
         Player personToAdd = new Player(name);
         this.players.add(personToAdd);
-        this.gameScores.put(personToAdd, 0);
+        this.dealerAndPlayers.add(personToAdd);
     }
 
     public void prepareDeck() {
@@ -52,11 +54,10 @@ public class Game {
         return this.dealer.getHand().get(0);
     }
 
-    public HashMap<Person, Integer> getGameScores() {
-        for (Player player: this.players) {
-            this.gameScores.put(player, player.getHandScore());
+    public void updateScores() {
+        for (Person person: this.dealerAndPlayers) {
+            person.getHandScore();
         }
-        return this.gameScores;
     }
 
     public void extraCard(Player player){
@@ -72,18 +73,44 @@ public class Game {
         }
     }
 
-    public void nextRound(Scanner scanner) {
+    public void playersNextRound(Scanner scanner) {
         for (Player player : this.players) {
             if (!player.isBusted && !player.getIsStand()) {
-                while(!player.isBusted && !player.getIsStand() && player.doesPlayerTwist(player.getNextAction(scanner))) {
+                while (!player.isBusted && !player.getIsStand() && player.doesPlayerTwist(player.getNextAction(scanner))) {
                     this.extraCard(player);
-                    this.getGameScores();
+                    this.updateScores();
                 }
-                this.getGameScores();
             }
         }
     }
 
+    public Integer dealerNextRound() {
+        Integer dealerScore = this.dealer.getHandScore();
+        if(dealerScore <= 16) {
+            this.dealer.addToHand(deck.dealCard());
+        }
+
+       return this.dealer.getHandScore();
+    }
 
 
+
+    public void nextRound(Scanner scanner) {
+        this.playersNextRound(scanner);
+        this.dealerNextRound();
+        this.updateScores();
+    }
+
+    public Person findWinner() {
+        int winningScore = 0;
+        Person winner = null;
+        for (Person person : this.dealerAndPlayers ) {
+            if (!person.isBusted && person.getHandScore() >= winningScore) {
+                winningScore = person.getHandScore();
+                winner = person;
+            }
+        }
+
+        return winner;
+    }
 }

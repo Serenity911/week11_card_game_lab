@@ -15,17 +15,24 @@ public class Runner {
         System.out.println("Shuffling..");
         game.prepareDeck();
         game.giveCards();
-        for (Player player : game.getPlayers()) {
-            System.out.println("Player " + player.getName() + " score: " + player.getHandScore());
-            System.out.println("Player " + player.getName() + " cards: " + player.getHand());
-        }
-        game.getGameScores();
-        game.nextRound(scanner);
+        System.out.println("Dealer's first card: " + game.getDealer().getHand().get(0));
+
         for (Player player : game.getPlayers()) {
             System.out.println("Player " + player.getName() + " score: " + player.getHandScore());
             System.out.println("Player " + player.getName() + " cards: " + player.getHand());
         }
 
+        game.updateScores();
+        game.nextRound(scanner);
+        for (Person person : game.getDealerAndPlayers()) {
+            System.out.println("Person " + person.getName() + " score: " + person.getHandScore());
+            System.out.println("Person " + person.getName() + " cards: " + person.getHand());
+        }
+
+        System.out.println("Dealer's score: " + game.getDealer().getHandScore());
+
+        System.out.println("The winner is...:");
+        System.out.println(game.findWinner().getName());
 //        System.out.println(game.getPlayers()[0].getHandValue());
 
 

@@ -5,15 +5,19 @@ public class Person {
 
     protected ArrayList<Card> hand;
     protected boolean isBusted;
-//    protected int runningTotal;
+    protected String name;
+
+
 
 
     public Person() {
         this.hand = new ArrayList<Card>();
-//        this.runningTotal = 0;
         this.isBusted = false;
     }
 
+    public String getName() {
+        return this.name;
+    }
 
     public void addToHand(Card card){
         this.hand.add(card);
@@ -27,9 +31,22 @@ public class Person {
         return getHand().size();
     }
 
-//    public int getRunningTotal() {
-//        return this.runningTotal;
-//    }
+    public int getHandScore(){
+        ArrayList<Card> aces = new ArrayList<Card>();
+        int runningTotal = 0;
+        for (Card card : getHand()) {
+            if( card.getRank() == RankType.ACE  ) {
+                aces.add(card);
+            }
+            runningTotal += Score.getValue(card);
+        }
+        while (runningTotal > 21 && aces.size() >0) {
+            runningTotal -= 10;
+            aces.remove(0);
+        }
+        checkIfBusted(runningTotal);
+        return runningTotal;
+    }
 
     public boolean getIsBusted() {
         return this.isBusted;
