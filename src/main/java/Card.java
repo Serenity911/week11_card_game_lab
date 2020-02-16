@@ -20,4 +20,9 @@ public class Card {
         return rank.getIsFaceCard();
     }
 
+//    every class has a method toString that print the name of the class and a unique identifier for the instance. It can be overridden to make it print anything else. Since it makes more sense to have the rank instead of Card@123456, it returns the ranktype but converted in string.
+    @Override
+    public String toString() {
+        return this.getRank().toString();
+    }
 }

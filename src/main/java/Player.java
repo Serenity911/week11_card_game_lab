@@ -37,7 +37,7 @@ public class Player extends Person {
     public String getNextAction(Scanner scanner){
         if (!isBusted && !isStand) {
 //            Scanner scanner = new Scanner(System.in);
-            System.out.println("Stand or Twist?");
+            System.out.println("Player "+ this.getName() +": Stand or Twist?");
             String playerInput = scanner.next();
 //            scanner.close();
             return playerInput;

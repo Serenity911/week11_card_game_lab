@@ -15,15 +15,15 @@ public class Runner {
         System.out.println("Shuffling..");
         game.prepareDeck();
         game.giveCards();
-        for (int i = 0; i < numberPlayer; i++) {
-            System.out.println("Player " + i + "cards:" + game.getPlayers().get(i).getHand());
-            System.out.println("Score: "+ game.getPlayers().get(i).getHandScore());
+        for (Player player : game.getPlayers()) {
+            System.out.println("Player " + player.getName() + " score: " + player.getHandScore());
+            System.out.println("Player " + player.getName() + " cards: " + player.getHand());
         }
         game.getGameScores();
         game.nextRound(scanner);
-        for (int i = 0; i < numberPlayer; i++) {
-            System.out.println("Player " + i + "cards:" + game.getPlayers().get(i).getHand());
-            System.out.println("Score: "+ game.getPlayers().get(i).getHandScore());
+        for (Player player : game.getPlayers()) {
+            System.out.println("Player " + player.getName() + " score: " + player.getHandScore());
+            System.out.println("Player " + player.getName() + " cards: " + player.getHand());
         }
 
 //        System.out.println(game.getPlayers()[0].getHandValue());

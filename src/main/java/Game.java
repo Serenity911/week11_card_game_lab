@@ -64,6 +64,8 @@ public class Game {
             Card newCard = deck.dealCard();
             System.out.println(newCard.getRank());
             player.addToHand(newCard);
+            System.out.println("Player " +player.getName() +" score: " + player.getHandScore());
+
         }
         else {
             return;
