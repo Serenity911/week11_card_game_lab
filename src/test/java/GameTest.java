@@ -1,6 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+
 import static org.junit.Assert.assertEquals;
 
 public class GameTest {
@@ -77,31 +80,27 @@ public class GameTest {
         game.giveCards();
         Player person1 = game.getPlayers().get(0);
         Player person2 = game.getPlayers().get(1);
-        Dealer dealer = game.getDealer();
         int player1Score = game.getGameScores().get(person1);
         int player2Score = game.getGameScores().get(person2);
-        int dealerScore = game.getGameScores().get(dealer);
         assertEquals(person1.getHandScore(), player1Score);
         assertEquals(person2.getHandScore(), player2Score);
-//        assertEquals(dealer.getHandScore(), dealerScore);
     }
 
 //    how do I test it..
-    public void get_second_turn_not_busted_players(){
+    @Test
+    public void player_can_stand(){
         game.prepareDeck();
         game.addPlayer("Jim");
-        game.addPlayer("Alex");
         Player person1 = game.getPlayers().get(0);
-        Player person2 = game.getPlayers().get(1);
-        Dealer dealer = game.getDealer();
         game.giveCards();
-//        person1.addToHand(cardTen);
-//        person1.addToHand(cardTen);
-//        person2.addToHand(cardTwo);
-//        person2.addToHand(cardTen);
         game.getGameScores();
-//        game.playersPlayedNextTurn();
 
+        String input = "Stand";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
 
+//        game.nextRound();
+        assertEquals(2, person1.countHandCards());
     }
+
 }

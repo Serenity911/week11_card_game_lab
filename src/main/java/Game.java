@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
 public class Game {
     private ArrayList<Player> players;
@@ -58,13 +59,28 @@ public class Game {
         return this.gameScores;
     }
 
-//    public void playersPlayedNextTurn() {
-//        for (Player player : this.players) {
-//            if (!player.isBusted) {
-//                player.playAction(player.getNextAction());
-//            }
-//        }
-//    }
+    public void extraCard(Player player){
+        if (!player.isBusted && !player.getIsStand()){
+            Card newCard = deck.dealCard();
+            System.out.println(newCard.getRank());
+            player.addToHand(newCard);
+        }
+        else {
+            return;
+        }
+    }
+
+    public void nextRound(Scanner scanner) {
+        for (Player player : this.players) {
+            if (!player.isBusted && !player.getIsStand()) {
+                while(!player.isBusted && !player.getIsStand() && player.doesPlayerTwist(player.getNextAction(scanner))) {
+                    this.extraCard(player);
+                    this.getGameScores();
+                }
+                this.getGameScores();
+            }
+        }
+    }
 
 
 

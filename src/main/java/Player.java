@@ -5,12 +5,12 @@ public class Player extends Person {
 
     private String name;
     private ArrayList<Card> aces;
-    private boolean stand;
+    private boolean isStand;
 
     public Player(String name){
         this.name = name;
         this.aces = new ArrayList<Card>();
-        this.stand = false;
+        this.isStand = false;
 
     }
 
@@ -34,12 +34,12 @@ public class Player extends Person {
         return runningTotal;
     }
 
-    public String getNextAction(){
-        if (!isBusted && !stand) {
-            Scanner scanner = new Scanner(System.in);
+    public String getNextAction(Scanner scanner){
+        if (!isBusted && !isStand) {
+//            Scanner scanner = new Scanner(System.in);
             System.out.println("Stand or Twist?");
-            String playerInput = scanner.nextLine();
-            scanner.close();
+            String playerInput = scanner.next();
+//            scanner.close();
             return playerInput;
         }
         else {
@@ -47,33 +47,33 @@ public class Player extends Person {
         }
     }
 
-    public void playAction(String playerInput) {
-        if(playerInput == "no more round") {
-            return;
+    public boolean doesPlayerTwist(String playerInput) {
+        if(playerInput.equals("no more round")) {
+            return false;
         }
-        if(playerInput == "Stand"){
+        if(playerInput.equals("Stand")){
             this.chooseStand();
+            return false;
         }
-        if(playerInput == "Twist") {
-            this.chooseTwist();
+        if(playerInput.equals("Twist")) {
+            return this.chooseTwist();
         }
-        else {
-            System.out.println("Invalid, try again.");
-            this.getNextAction();
-        }
+        return false;
     }
 
-    public boolean getDoesStand() {
-        return this.stand;
+    public boolean getIsStand() {
+        return this.isStand;
     }
 
-    public boolean chooseStand(){
-        this.stand = true;
-        return true;
+    public void chooseStand(){
+        this.isStand = true;
     }
 
-    public void chooseTwist(){
-
+    public boolean chooseTwist(){
+        if(!this.isBusted && !this.isStand){
+            return true;
+        }
+        return false;
     }
 
 

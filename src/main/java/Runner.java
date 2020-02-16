@@ -19,7 +19,12 @@ public class Runner {
             System.out.println("Player " + i + "cards:" + game.getPlayers().get(i).getHand());
             System.out.println("Score: "+ game.getPlayers().get(i).getHandScore());
         }
-
+        game.getGameScores();
+        game.nextRound(scanner);
+        for (int i = 0; i < numberPlayer; i++) {
+            System.out.println("Player " + i + "cards:" + game.getPlayers().get(i).getHand());
+            System.out.println("Score: "+ game.getPlayers().get(i).getHandScore());
+        }
 
 //        System.out.println(game.getPlayers()[0].getHandValue());
 
