@@ -8,9 +8,9 @@ public class Runner {
         Scanner scanner = new Scanner(System.in);
         System.out.println("How many players would you like to play?");
         int numberPlayer = scanner.nextInt();
-        System.out.println("Player's name:");
-        for (int i = 0; i <= numberPlayer ; i++) {
-            game.addPlayer(scanner.nextLine());
+        for (int i = 0; i < numberPlayer ; i++) {
+            System.out.println("Player's "+ (i+1) + " name:");
+            game.addPlayer(scanner.next());
         }
         System.out.println("Shuffling..");
         game.prepareDeck();

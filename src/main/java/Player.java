@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Player extends Person {
 
@@ -31,8 +32,24 @@ public class Player extends Person {
         return runningTotal;
     }
 
+    public String getNextAction(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Stand or Twist?");
+        String playerInput = scanner.nextLine();
+        scanner.close();
+        return playerInput;
+    }
+
+//    public String getNextAction() {
+//
+//    }
+
     public boolean chooseStand(){
         return true;
+    }
+
+    public void chooseTwist(){
+
     }
 
 

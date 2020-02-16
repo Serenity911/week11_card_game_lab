@@ -86,17 +86,22 @@ public class GameTest {
 //        assertEquals(dealer.getHandScore(), dealerScore);
     }
 
-//    public void get_second_turn_not_busted_players(){
-//        game.prepareDeck();
-//        game.addPlayer("Jim");
-//        game.addPlayer("Alex");
-//        game.giveCards();
-//        Player person1 = game.getPlayers().get(0);
-//        Player person2 = game.getPlayers().get(1);
-//        Dealer dealer = game.getDealer();
-//        game.playersNextTurn();
-//        player1.stand();
-//        player2.twist();
-//
-//    }
+//    how do I test it..
+    public void get_second_turn_not_busted_players(){
+        game.prepareDeck();
+        game.addPlayer("Jim");
+        game.addPlayer("Alex");
+        Player person1 = game.getPlayers().get(0);
+        Player person2 = game.getPlayers().get(1);
+        Dealer dealer = game.getDealer();
+        game.giveCards();
+//        person1.addToHand(cardTen);
+//        person1.addToHand(cardTen);
+//        person2.addToHand(cardTwo);
+//        person2.addToHand(cardTen);
+        game.getGameScores();
+//        game.playersPlayedNextTurn();
+
+
+    }
 }

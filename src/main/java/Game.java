@@ -5,8 +5,6 @@ public class Game {
     private ArrayList<Player> players;
     private Deck deck;
     private Dealer dealer;
-
-
     private HashMap<Person, Integer> gameScores;
 
     public Game() {
@@ -60,6 +58,13 @@ public class Game {
         return this.gameScores;
     }
 
+//    public void playersPlayedNextTurn() {
+//        for (Player player : this.players) {
+//            if (!player.isBusted) {
+//                player.playAction(player.getNextAction());
+//            }
+//        }
+//    }
 
 
 
