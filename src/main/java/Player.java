@@ -30,11 +30,11 @@ public class Player extends Person {
         if(playerInput.equals("no more round")) {
             return false;
         }
-        if(playerInput.equals("Stand")){
+        if(playerInput.toLowerCase().equals("stand")){
             this.chooseStand();
             return false;
         }
-        if(playerInput.equals("Twist")) {
+        if(playerInput.toLowerCase().equals("twist")) {
             return this.chooseTwist();
         }
         return false;
